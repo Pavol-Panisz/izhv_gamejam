@@ -8,7 +8,7 @@ public class StudentMovement : MonoBehaviour
     private NavMeshAgent agent;
     private Vector3 target;
 
-    public bool reactsOnClick = false;
+    public bool reactsOnClick;
 
     private void Awake()
     {
@@ -31,13 +31,14 @@ public class StudentMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 tmp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            target = new Vector3(tmp.x, tmp.y, 0f);
         } 
     }
 
     void SetAgentPosition()
     {
-        agent.SetDestination(new Vector3(target.x, target.y, target.z));
+        agent.SetDestination(new Vector3(target.x, target.y, 0f));
     }
 
     // Update is called once per frame
