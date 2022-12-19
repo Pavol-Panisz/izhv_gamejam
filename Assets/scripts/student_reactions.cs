@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class student_reactions : MonoBehaviour
 {
+    public StudentMovement myLegs;
+    public string myName;
+    public bool isDeaf;
     void Start()
     {
     }
@@ -14,8 +17,18 @@ public class student_reactions : MonoBehaviour
         
     }
 
-    public void holyshit(float damage)
+    public void OnNameShouted(string name,Vector3 position)
     {
-        Debug.Log(damage);
+        if (!isDeaf)
+        {
+            Debug.Log(name);
+            if (string.Equals(name,myName))
+            {
+                Debug.Log("AAAAAAAAa");
+                myLegs.SetTargetPosition(position);
+                
+            }
+        }
+        
     }
 }

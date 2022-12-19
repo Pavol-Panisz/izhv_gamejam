@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class teacher_skills : MonoBehaviour
 {
-    public GameObject student;
+    public student_reactions student; 
+    
     void Start()
     {
-        student.gameObject.SendMessage("holyshit",50f);
     }
     void Update()
     {
+
         if (Input.GetKeyDown("q"))
         {
-            student.gameObject.SendMessage("holyshit", 30f);
+            student.OnNameShouted("jakub",transform.position);
         }
     }
 }
