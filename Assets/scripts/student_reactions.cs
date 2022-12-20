@@ -27,7 +27,7 @@ public class student_reactions : MonoBehaviour
         
     }
 
-    public void OnNameShouted(string name,Vector3 position)
+    public void OnNameShouted(Vector3 position)
     {
         if (!isDeaf)
         {
@@ -37,14 +37,34 @@ public class student_reactions : MonoBehaviour
     }
     public void OnNameSaid(string name, Vector3 position)
     {
-        if (!isDeaf && !isHalfDead && !isIgnorant)
+        if (!isDeaf && !isHalfDead && string.Equals(name,myName))
         {
-            myLegs.SetTargetPosition(position);
+            myAnimator.onPlayLook(position);
         }
     }
     public void OnGoToTeacher(Vector3 position)
     {
-
+        Vector3 forward = transform.TransformDirection(Vector3.right);
+        Vector3 toOther = position - transform.position;
+        if (Vector3.Dot(forward, toOther) < 0)
+        {
+            //Debug.Log("nalavo");
+            if(myAnimator.isLookLeft == true)
+            {
+                //Debug.Log("vsimol som si ze si nalavo");
+                myLegs.SetTargetPosition(position);
+            }
+        }
+        else
+        {
+            //Debug.Log("napravo");
+            if (myAnimator.isLookLeft == false)
+            {
+                //Debug.Log("vsimol som si ze si napravo");
+                myLegs.SetTargetPosition(position);
+            }
+        }
+        
     }
     public void OnRattled(Vector3 position)
     {
