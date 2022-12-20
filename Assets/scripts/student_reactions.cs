@@ -11,7 +11,6 @@ public class student_reactions : MonoBehaviour
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
         

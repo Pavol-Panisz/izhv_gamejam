@@ -46,5 +46,7 @@ public class StudentMovement : MonoBehaviour
     {
         if (reactsOnClick) { SetTargetPositionClick(); }
         SetAgentPosition();
+
+        
     }
 }
