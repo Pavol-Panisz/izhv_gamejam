@@ -68,6 +68,10 @@ public class student_reactions : MonoBehaviour
     }
     public void OnRattled(Vector3 position)
     {
-
+        if (isRattle)
+        {
+            Debug.Log("cotijebe hrkalka UAAAA");
+            myLegs.SetTargetPosition(position);
+        }
     }
 }

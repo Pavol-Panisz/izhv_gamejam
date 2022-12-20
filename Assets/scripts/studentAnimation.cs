@@ -44,8 +44,8 @@ public class studentAnimation : MonoBehaviour
     {
         isLookLeft = !isLookLeft;
         animator.SetBool("isLeft",isLookLeft);
-        Debug.Log("flipujem kukuc");
-        Debug.Log(isLookLeft);
+        //Debug.Log("flipujem kukuc");
+        //Debug.Log(isLookLeft);
 
         StartCoroutine(coroutine());
     }
