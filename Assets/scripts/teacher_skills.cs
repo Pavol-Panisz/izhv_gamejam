@@ -68,7 +68,7 @@ public class teacher_skills : MonoBehaviour
     {
         foreach (var student in studentBrains) {
             if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius) {
-                student.OnNameShouted(student.name, transform.position);
+                student.OnNameShouted(transform.position);
             }
         }
     }
@@ -119,7 +119,13 @@ public class teacher_skills : MonoBehaviour
         }*/
         if (Input.GetKeyDown("r"))
         {
-            student.OnGoToTeacher(transform.position);
+            foreach (var student in studentBrains)
+            {
+                if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius)
+                {
+                    student.OnGoToTeacher(transform.position);
+                }
+            }
         }
         
     }
