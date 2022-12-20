@@ -109,24 +109,12 @@ public class teacher_skills : MonoBehaviour
     void Update()
     {
 
-        /*if (Input.GetKeyDown("q"))
+        foreach (var student in studentBrains)
         {
-            student.OnNameSaid("Jakub",transform.position);
-        }
-        if (Input.GetKeyDown("e"))
-        {
-            student.OnNameShouted(transform.position);
-        }*/
-        if (Input.GetKeyDown("r"))
-        {
-            foreach (var student in studentBrains)
+            if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius)
             {
-                if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius)
-                {
-                    student.OnGoToTeacher(transform.position);
-                }
+                student.OnNameShouted(transform.position);
             }
         }
-        
     }
 }
