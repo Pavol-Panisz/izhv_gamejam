@@ -15,7 +15,6 @@ public class studentAnimation : MonoBehaviour
     void Start()
     {
         onRandomLook();
-        Debug.Log("idzeme rotatovat");
     }
 
     // Update is called once per frame
@@ -26,35 +25,34 @@ public class studentAnimation : MonoBehaviour
         
         
     }
-    public void onPlayLook(Vector3 position,bool isLeft)
+    public void onPlayLook(Vector3 position)
     {
-        if (isLeft)
+        Vector3 forward = transform.TransformDirection(Vector3.right);
+        Vector3 toOther = position - transform.position;
+        if (Vector3.Dot(forward, toOther) < 0)
         {
-            animator.SetBool("isLeft",true);
-            Debug.Log("left look");
+            animator.SetBool("isLeft", true);
         }
         else
         {
             animator.SetBool("isLeft", false);
-            Debug.Log("right look");
         }
-        
+
     }
     public void onRandomLook()
     {
         animator.SetBool("isLeft",true);
-        Debug.Log("kukol som dolava");
+        //Debug.Log("kukol som dolava");
         
         StartCoroutine(coroutine());
     }
     IEnumerator coroutine()
     {
-        Debug.Log("halooo");
-        Debug.Log("kuk sem");
-
-        yield return new WaitForSeconds(Random.RandomRange(10,50));
+        //Debug.Log("kuk sem");
+        yield return new WaitForSeconds(Random.RandomRange(2,6));
         animator.SetBool("isLeft",false);
-        yield return new WaitForSeconds(Random.RandomRange(10, 50));
+        //Debug.Log("kuk tam");
+        yield return new WaitForSeconds(Random.RandomRange(2,6));
         onRandomLook();
     }
 

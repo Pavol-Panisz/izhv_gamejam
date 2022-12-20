@@ -31,16 +31,7 @@ public class student_reactions : MonoBehaviour
     {
         if (!isDeaf)
         {
-            Vector3 forward = transform.TransformDirection(Vector3.right);
-            Vector3 toOther = position - transform.position;
-            if (Vector3.Dot(forward, toOther) < 0)
-            {
-                myAnimator.onPlayLook(position,true);
-            }
-            else
-            {
-                myAnimator.onPlayLook(position, false);
-            }
+            myAnimator.onPlayLook(position);
         }
         
     }
