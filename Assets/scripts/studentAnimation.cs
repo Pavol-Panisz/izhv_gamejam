@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class studentAnimation : MonoBehaviour
 {
     public float movespeed;
-    public bool isLookRight;
+    public bool isLookLeft;
     public NavMeshAgent agent;
 
     public Animator animator;
@@ -31,28 +31,29 @@ public class studentAnimation : MonoBehaviour
         Vector3 toOther = position - transform.position;
         if (Vector3.Dot(forward, toOther) < 0)
         {
-            animator.SetBool("isLeft", true);
+            isLookLeft = true;
         }
         else
         {
-            animator.SetBool("isLeft", false);
+            isLookLeft = false;
         }
+        animator.SetBool("isLeft", isLookLeft);
 
     }
     public void onRandomLook()
     {
-        animator.SetBool("isLeft",true);
-        //Debug.Log("kukol som dolava");
-        
+        isLookLeft = !isLookLeft;
+        animator.SetBool("isLeft",isLookLeft);
+        //Debug.Log("flipujem kukuc");
+        //Debug.Log(isLookLeft);
+
         StartCoroutine(coroutine());
     }
     IEnumerator coroutine()
     {
         //Debug.Log("kuk sem");
         yield return new WaitForSeconds(Random.RandomRange(2,6));
-        animator.SetBool("isLeft",false);
-        //Debug.Log("kuk tam");
-        yield return new WaitForSeconds(Random.RandomRange(2,6));
+        animator.SetBool("isLeft",isLookLeft);
         onRandomLook();
     }
 
