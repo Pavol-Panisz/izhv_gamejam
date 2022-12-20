@@ -3417,7 +3417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   students:
-  - {fileID: 0}
+  - {fileID: 715214797286605734, guid: 0ab1be699fa65a84d93000b350ed58ac, type: 3}
   NumberOfStudents: 5
   myNames:
   - Viktor
