@@ -290,7 +290,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 59428114}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813042018}
+        m_TargetAssemblyTypeName: UITeacher, Assembly-CSharp
+        m_MethodName: OnClickedRattle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &59428114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,7 +1157,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1529251514}
   m_HandleRect: {fileID: 1529251513}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2231,7 +2243,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 965112834}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813042018}
+        m_TargetAssemblyTypeName: UITeacher, Assembly-CSharp
+        m_MethodName: CloseNameSelection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &965112834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3055,7 +3079,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1073226844}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813042018}
+        m_TargetAssemblyTypeName: UITeacher, Assembly-CSharp
+        m_MethodName: OnClickedSayName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1073226844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4825,9 +4861,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9cdff639fa632448fb8177bb2a3cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuSelectionRoot: {fileID: 0}
+  menuSelectionRoot: {fileID: 1427149918}
   whereToCreateButton: {fileID: 2061130648}
   buttonPrefab: {fileID: 9115874315358267612, guid: bb8c2bdd18592a74dac978f543724d48, type: 3}
+  teacherLogic: {fileID: 952946488831836731}
+  deactivateWhileSelectingName:
+  - {fileID: 2087216316}
+  - {fileID: 1073226841}
+  - {fileID: 59428111}
 --- !u!1 &1859377831
 GameObject:
   m_ObjectHideFlags: 0
@@ -11363,7 +11404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.00085249596, y: 302.22394}
+  m_AnchoredPosition: {x: 0.00085249596, y: 0}
   m_SizeDelta: {x: 0, y: 302.2239}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2061130650
@@ -11525,7 +11566,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2087216319}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813042018}
+        m_TargetAssemblyTypeName: UITeacher, Assembly-CSharp
+        m_MethodName: OnClickedShoutName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2087216319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11791,4 +11844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153f42c8c7f8f3a46b10c2db71fc21e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  student: {fileID: 167925589}
+  student: {fileID: 0}
+  StudentTag: Student
+  shoutRadius: 5.73
+  sayRadius: 9.31
+  rattleRadius: 7.49
+  comeHereRadius: 6.77

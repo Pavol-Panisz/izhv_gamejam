@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class UITeacher : MonoBehaviour
 {
@@ -14,24 +16,63 @@ public class UITeacher : MonoBehaviour
     [Header("Other")]
     public teacher_skills teacherLogic;
 
+    [Tooltip("When choosing a name, the following gameobjects will be deactivated, so you cant click them for example")]
+    public GameObject[] deactivateWhileSelectingName;
 
-    // TODO LEFT OFF 11:30 TUESDAY
-    // CreateButtons() that creates the buttons based on a received list from LevelLogic 
-    // that gives the list during Start()
-    // Both name buttons call teacher_actions.cs methods
-
-    public void CreateButtons(List<string> studentNames)
+    enum SpeechCommand { None, Say, Shout };
+    SpeechCommand lastSpeechCommand = SpeechCommand.None;
+    
+    // Creates the buttons and then deactivates the name selection panel, as this method
+    // should only be called once on Start and the panel should be invisible initially
+    public void InitializeNameSelection(List<string> studentNames)
     {
         foreach (string str in studentNames) { AddNameButton(str); }
+
+        menuSelectionRoot.SetActive(false);
     }
     
+    public void OnClickedRattle()
+    {
+        teacherLogic.Rattle();
+    }
+
     public void OnClickedSayName()
     {
-        
+        // deactivate certain buttons and activate the name selection menu
+        foreach (var obj in deactivateWhileSelectingName) { obj.SetActive(false); }
+        menuSelectionRoot.SetActive(true);
+
+        lastSpeechCommand = SpeechCommand.Say;
     }
 
     public void OnClickedShoutName()
     {
+        // deactivate certain buttons and activate the name selection menu
+        foreach (var obj in deactivateWhileSelectingName) { obj.SetActive(false); }
+        menuSelectionRoot.SetActive(true);
+
+        lastSpeechCommand = SpeechCommand.Shout;
+    }
+
+    // when you press a name button this gets called
+    public void SetNameToSay(string str) 
+    {
+        if (lastSpeechCommand == SpeechCommand.Say) {
+            teacherLogic.SayName(str);
+        } else if (lastSpeechCommand == SpeechCommand.Shout) {
+            teacherLogic.ShoutName(name);
+        }
+        CloseNameSelection();
+    }
+    
+
+    // this gets also called when you press X while selecting a student name
+    public void CloseNameSelection() 
+    {
+        lastSpeechCommand = SpeechCommand.None;
+        // REactivate certain buttons and DEactivate the name selection menu
+        foreach (var obj in deactivateWhileSelectingName) { obj.SetActive(true); }
+        menuSelectionRoot.SetActive(false);
 
     }
 
@@ -45,5 +86,9 @@ public class UITeacher : MonoBehaviour
         GameObject btn = GameObject.Instantiate(buttonPrefab, whereToCreateButton);
         Transform textObj = btn.transform.GetChild(0);
         textObj.GetComponent<TextMeshProUGUI>().text = studentName;
+
+        // assign the method SetNameToSay into the OnClick of this button at runtime
+        btn.GetComponent<Button>().onClick.AddListener(() => SetNameToSay(studentName));
+            
     }
 }
