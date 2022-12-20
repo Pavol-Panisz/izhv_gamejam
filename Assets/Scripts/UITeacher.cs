@@ -10,11 +10,21 @@ public class UITeacher : MonoBehaviour
     public Transform whereToCreateButton;
     public GameObject buttonPrefab;
 
+    [Space]
+    [Header("Other")]
+    public teacher_skills teacherLogic;
+
 
     // TODO LEFT OFF 11:30 TUESDAY
     // CreateButtons() that creates the buttons based on a received list from LevelLogic 
     // that gives the list during Start()
+    // Both name buttons call teacher_actions.cs methods
 
+    public void CreateButtons(List<string> studentNames)
+    {
+        foreach (string str in studentNames) { AddNameButton(str); }
+    }
+    
     public void OnClickedSayName()
     {
         
@@ -26,8 +36,7 @@ public class UITeacher : MonoBehaviour
     }
 
     [ContextMenu("Add debug name button")]
-    public void DebugAddButton()
-    {
+    public void DebugAddButton() {
         AddNameButton("SomeName");
     }
 
