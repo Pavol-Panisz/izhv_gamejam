@@ -5,10 +5,20 @@ using UnityEngine;
 public class student_reactions : MonoBehaviour
 {
     public StudentMovement myLegs;
-    public string myName;
+    public studentAnimation myAnimator;
+
     public bool isDeaf;
+    public bool isHalfDead;
+    public bool isRattle;
+    public bool isBlind;
+    public bool isLoudScared;
+    public bool isIgnorant;
+
+    public string[] myNames = new string[] { "Viktor", "Jakub", "Adam", "Mario", "Palo", "Brano", "Daniel", "Igor" };
+    public string myName;
     void Start()
     {
+        myName = myNames[Random.Range(0, myNames.Length)];
     }
 
     // Update is called once per frame
@@ -21,14 +31,32 @@ public class student_reactions : MonoBehaviour
     {
         if (!isDeaf)
         {
-            Debug.Log(name);
-            if (string.Equals(name,myName))
+            Vector3 forward = transform.TransformDirection(Vector3.right);
+            Vector3 toOther = position - transform.position;
+            if (Vector3.Dot(forward, toOther) < 0)
             {
-                Debug.Log("AAAAAAAAa");
-                myLegs.SetTargetPosition(position);
-                
+                myAnimator.onPlayLook(position,true);
+            }
+            else
+            {
+                myAnimator.onPlayLook(position, false);
             }
         }
         
+    }
+    public void OnNameSaid(string name, Vector3 position)
+    {
+        if (!isDeaf && !isHalfDead && !isIgnorant)
+        {
+            myLegs.SetTargetPosition(position);
+        }
+    }
+    public void OnGoToTeacher(Vector3 position)
+    {
+
+    }
+    public void OnRattled(Vector3 position)
+    {
+
     }
 }

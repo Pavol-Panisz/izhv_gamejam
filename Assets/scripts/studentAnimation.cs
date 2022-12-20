@@ -6,13 +6,16 @@ using UnityEngine.AI;
 public class studentAnimation : MonoBehaviour
 {
     public float movespeed;
+    public bool isLookRight;
     public NavMeshAgent agent;
 
     public Animator animator;
+
+    IEnumerator coroutinecka;
     void Start()
     {
-        // TODO: 
-        // set random Animator Controller and a random sprite renderer color
+        onRandomLook();
+        Debug.Log("idzeme rotatovat");
     }
 
     // Update is called once per frame
@@ -20,25 +23,39 @@ public class studentAnimation : MonoBehaviour
     {
         animator.SetFloat("speedy", agent.velocity.x);
         animator.SetFloat("speedx", agent.velocity.y);
-        /*if (Input.GetKey("d"))
-        {
-            animator.SetFloat("speedy",2);
-            transform.position = transform.position + transform.right * movespeed * Time.deltaTime;
-        }
-        if (Input.GetKey("a"))
-        {
-            animator.SetFloat("speedy", -2);
-            transform.position = transform.position - transform.right * movespeed * Time.deltaTime;
-        }
-        if (Input.GetKey("w"))
-        {
-            animator.SetFloat("speedx", 2);
-            transform.position = transform.position + transform.up * movespeed * Time.deltaTime;
-        }
-        if (Input.GetKey("s"))
-        {
-            animator.SetFloat("speedx", -2);
-            transform.position = transform.position - transform.up * movespeed * Time.deltaTime;
-        }*/
+        
+        
     }
+    public void onPlayLook(Vector3 position,bool isLeft)
+    {
+        if (isLeft)
+        {
+            animator.SetBool("isLeft",true);
+            Debug.Log("left look");
+        }
+        else
+        {
+            animator.SetBool("isLeft", false);
+            Debug.Log("right look");
+        }
+        
+    }
+    public void onRandomLook()
+    {
+        animator.SetBool("isLeft",true);
+        Debug.Log("kukol som dolava");
+        
+        StartCoroutine(coroutine());
+    }
+    IEnumerator coroutine()
+    {
+        Debug.Log("halooo");
+        Debug.Log("kuk sem");
+
+        yield return new WaitForSeconds(Random.RandomRange(10,50));
+        animator.SetBool("isLeft",false);
+        yield return new WaitForSeconds(Random.RandomRange(10, 50));
+        onRandomLook();
+    }
+
 }

@@ -14,7 +14,11 @@ public class teacher_skills : MonoBehaviour
 
         if (Input.GetKeyDown("q"))
         {
-            student.OnNameShouted("jakub",transform.position);
+            student.OnNameSaid("Jakub",transform.position);
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            student.OnNameShouted("Jakub", transform.position);
         }
     }
 }
