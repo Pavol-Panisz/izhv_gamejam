@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEditor;
 
 public class UITeacher : MonoBehaviour
 {
@@ -57,6 +58,8 @@ public class UITeacher : MonoBehaviour
     // when you press a name button this gets called
     public void SetNameToSay(string str) 
     {
+
+
         if (lastSpeechCommand == SpeechCommand.Say) {
             teacherLogic.SayName(str);
         } else if (lastSpeechCommand == SpeechCommand.Shout) {
@@ -76,8 +79,22 @@ public class UITeacher : MonoBehaviour
 
     }
 
-    [ContextMenu("Add debug name button")]
-    public void DebugAddButton() {
+    [MenuItem("CUSTOM DEBUG/add name selection button")]
+    static void DebugAddButton()
+    {
+        var obj = Selection.activeGameObject;
+        var uiteacher = obj.GetComponent<UITeacher>();
+        if (!uiteacher)
+        {
+            Debug.LogError("To perform this you must select the UIteacher (who should have UITeacher on him)");
+        }
+        else
+        {
+            uiteacher._DebugAddButton();
+        }
+    }
+
+    private void _DebugAddButton() {
         AddNameButton("SomeName");
     }
 
@@ -87,8 +104,8 @@ public class UITeacher : MonoBehaviour
         Transform textObj = btn.transform.GetChild(0);
         textObj.GetComponent<TextMeshProUGUI>().text = studentName;
 
-        // assign the method SetNameToSay into the OnClick of this button at runtime
-        btn.GetComponent<Button>().onClick.AddListener(() => SetNameToSay(studentName));
+        Button btnScript = btn.GetComponent<Button>();
+        btnScript.onClick.AddListener(delegate { SetNameToSay(studentName); });
             
     }
 }

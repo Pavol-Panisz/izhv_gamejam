@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEditor;
 
 public class teacher_skills : MonoBehaviour
 {
-    [Header("this is useless but i left it here anyway so u see it dano")]
-    public student_reactions student;
-
     [Space]
     public string StudentTag;
     public float shoutRadius;
@@ -15,7 +14,29 @@ public class teacher_skills : MonoBehaviour
     public float comeHereRadius;
 
     // tasty delicious students brains yummy!
+    [SerializeField] [Header("Dont touch, showing only for debug!")] 
     private List<student_reactions> studentBrains = new List<student_reactions>();
+
+    [Space]
+    [Header("Radius visualizations")]
+    public Transform sayRadiusVisual;
+    public Transform shoutRadiusVisual;
+    public Transform rattleRadiusVisual;
+    public Transform comeHereRadiusVisual;
+
+    [MenuItem("CUSTOM DEBUG/teacher findStudents")]
+    static void DebugFindStudents()
+    {
+        var obj = Selection.activeGameObject;
+        var teacher = obj.GetComponent<teacher_skills>();
+        if (!teacher)
+        {
+            Debug.LogError("To perform this you must select the teacher (who should have teacher_skills on him)");
+        } else
+        {
+            teacher.FindStudents();
+        }
+    }
 
     // Should be called after all students are instantiated - puts all students into the internal students list
     public void FindStudents()
@@ -26,6 +47,9 @@ public class teacher_skills : MonoBehaviour
                 "Maybe the StudentTag is wrong or you dont have any students in the scene " +
                 "when this method is being executed.");  
         }
+
+        // remove previous students
+        studentBrains.Clear();
 
         foreach (var go in students)
         {
@@ -42,19 +66,46 @@ public class teacher_skills : MonoBehaviour
 
     public void ShoutName(string name)
     {
-        Debug.Log("shouting name " + name); 
+        foreach (var student in studentBrains) {
+            if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius) {
+                student.OnNameShouted(student.name, transform.position);
+            }
+        }
     }
 
     public void SayName(string name)
     {
-        Debug.Log("saying name " + name);
+        foreach (var student in studentBrains) {
+            if (Vector2.Distance(transform.position, student.transform.position) <= sayRadius)
+            {
+                student.OnNameSaid(student.name, transform.position);
+            }
+        }
     }
 
     public void Rattle()
     {
-        Debug.Log("TEACHER RATTLED");
+        foreach (var student in studentBrains) {
+            if (Vector2.Distance(transform.position, student.transform.position) <= sayRadius) {
+                student.OnRattled(transform.position);
+            }
+        }
     }
-    
+
+    // yeah this could be done a lot cleaner, but I don't have the time
+    public void VisualizeShout(bool doIt) {
+        shoutRadiusVisual.transform.localScale = new Vector3(2f, 2f, 0f) * shoutRadius;
+        shoutRadiusVisual.gameObject.SetActive(doIt); }
+    public void VisualizeSay(bool doIt) {
+        sayRadiusVisual.transform.localScale = new Vector3(2f, 2f, 0f) * sayRadius;
+        sayRadiusVisual.gameObject.SetActive(doIt); }
+    public void VisualizeRattle(bool doIt) {
+        rattleRadiusVisual.transform.localScale = new Vector3(2f, 2f, 0f) * rattleRadius;
+        rattleRadiusVisual.gameObject.SetActive(doIt); }
+    public void VisualizeCmHere(bool doIt) {
+        comeHereRadiusVisual.transform.localScale = new Vector3(2f, 2f, 0f) * comeHereRadius;
+        comeHereRadiusVisual.gameObject.SetActive(doIt); }
+
     void Update()
     {
 
