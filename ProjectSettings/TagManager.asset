@@ -41,18 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: player
+  - name: ground
     uniqueID: 3261157221
     locked: 0
-  - name: sak prosim
-    uniqueID: 1820054499
-    locked: 0
-  - name: 1
-    uniqueID: 272169751
-    locked: 0
-  - name: 2
-    uniqueID: 624308997
-    locked: 0
-  - name: 3
-    uniqueID: 947058855
+  - name: stuff
+    uniqueID: 1009665515
     locked: 0

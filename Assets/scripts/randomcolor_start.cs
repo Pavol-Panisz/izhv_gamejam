@@ -12,9 +12,9 @@ public class randomcolor_start : MonoBehaviour
     void Start()
     {
         Color bruh = new Color(
-          Random.Range(0.5f, 0.8f),
-          Random.Range(0.5f, 0.8f),
-          Random.Range(0.5f, 0.8f)
+          Random.Range(0.4f, 0.8f),
+          Random.Range(0.4f, 0.8f),
+          Random.Range(0.4f, 0.8f)
           );
 
         m_SpriteRenderer.color = bruh;
