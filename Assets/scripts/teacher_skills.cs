@@ -13,6 +13,10 @@ public class teacher_skills : MonoBehaviour
     public float rattleRadius;
     public float comeHereRadius;
 
+    [Space]
+    public SoundEffect followMeSfx;
+    public SoundEffect stopFollowingMeSfx;
+
     // tasty delicious students brains yummy!
     [SerializeField] [Header("Dont touch, showing only for debug!")] 
     private List<student_reactions> studentBrains = new List<student_reactions>();
@@ -35,6 +39,18 @@ public class teacher_skills : MonoBehaviour
         } else
         {
             teacher.FindStudents();
+        }
+    }
+
+    private void Awake()
+    {
+        if (!followMeSfx || !stopFollowingMeSfx)
+        {
+            if (!followMeSfx || !stopFollowingMeSfx)
+            {
+                Debug.LogError("You forgot to assign at least one of the Sfx fields. " +
+                    "The corresponding scripts should be located on the player: gameobjects \"stop/follow me audio\"");
+            }
         }
     }
 
@@ -119,8 +135,11 @@ public class teacher_skills : MonoBehaviour
 
     void Update()
     {
+        bool clickedLeft = Input.GetMouseButtonDown(0);
+        bool clickedRight = Input.GetMouseButtonDown(1);
+
         // look at each student in range whether they were clicked on
-        if (Input.GetMouseButtonDown(0))
+        if (clickedLeft || clickedRight)
         {
             Vector3 m = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             foreach (var student in studentBrains) {
@@ -130,8 +149,21 @@ public class teacher_skills : MonoBehaviour
                     var b = sr.bounds;
                     if (b.min.x < m.x && m.x < b.max.x && b.min.y < m.y && m.y < b.max.y)
                     {
-                        Debug.Log("clicked on student " + student.myName);
-                        student.OnGoToTeacher(transform.position);
+                        //Debug.Log("clicked on student " + student.myName);
+
+                        bool doFollow = true;
+                        if (clickedLeft) { doFollow = true; }
+                        else if (clickedRight) { doFollow = false; }
+
+                        student.OnSetFollowTeacher(doFollow);
+
+                        if (doFollow == true) {
+                            followMeSfx.PlaySound();
+                        }
+                        else {
+                            stopFollowingMeSfx.PlaySound();
+                        }
+                        
                     }
                     
                 }

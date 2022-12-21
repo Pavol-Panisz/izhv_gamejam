@@ -24,7 +24,7 @@ public class student_reactions : MonoBehaviour
     public string[] myNames = new string[] { "Viktor", "Jakub", "Adam", "Mario", "Palo", "Brano", "Daniel", "Igor" };
     public string myName;
 
-    private bool isFollowingTeacher = false;
+    [HideInInspector] public bool isFollowingTeacher = false;
 
     private void Awake()
     {
@@ -66,17 +66,17 @@ public class student_reactions : MonoBehaviour
             myAnimator.onPlayLook(position);
         }
     }
-    public void OnGoToTeacher(Vector3 position)
+    public void OnSetFollowTeacher(bool doFollow)
     {
         Vector3 forward = transform.TransformDirection(Vector3.right);
-        Vector3 toOther = position - transform.position;
+        Vector3 toOther = teacherTransform.position - transform.position;
         if (Vector3.Dot(forward, toOther) < 0)
         {
             //Debug.Log("nalavo");
             if(myAnimator.isLookLeft == true)
             {
                 //Debug.Log("vsimol som si ze si nalavo");
-                isFollowingTeacher = !isFollowingTeacher;
+                isFollowingTeacher = doFollow;
             }
         }
         else
@@ -86,15 +86,9 @@ public class student_reactions : MonoBehaviour
             {
                 //Debug.Log("vsimol som si ze si napravo");
                 
-                isFollowingTeacher = !isFollowingTeacher;
+                isFollowingTeacher = doFollow;
             }
         }
-        
-        if (isFollowingTeacher)
-        {
-
-        }
-
     }
     public void OnRattled(Vector3 position)
     {
