@@ -4276,6 +4276,7 @@ MonoBehaviour:
   - group: 0100000005000000
   - group: 0700000006000000
   - group: 02000000
+  - group: 06000000
 --- !u!4 &1932472212
 Transform:
   m_ObjectHideFlags: 0
@@ -11309,6 +11310,18 @@ PrefabInstance:
     - target: {fileID: 6712294539037853187, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712294539048564097, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.65869004
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712294539048564097, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 6712294539048564097, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.13163044
       objectReference: {fileID: 0}
     - target: {fileID: 6712294539346236982, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
       propertyPath: m_Color.b
