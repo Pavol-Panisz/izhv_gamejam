@@ -3423,7 +3423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   students:
   - {fileID: 715214797286605734, guid: 0ab1be699fa65a84d93000b350ed58ac, type: 3}
-  NumberOfStudents: 10
+  NumberOfStudents: 1
   approximateMapCenter: {fileID: 1932472212}
   myNames:
   - Viktor
