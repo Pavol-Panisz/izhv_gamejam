@@ -33,12 +33,12 @@ public class studentAnimation : MonoBehaviour
         if (Vector3.Dot(forward, toOther) < 0)
         {
             isLookLeft = true;
-            Destroy(Instantiate(alerted,transform),3);
+            Destroy(Instantiate(alerted,transform),1);
         }
         else
         {
             isLookLeft = false;
-            Destroy(Instantiate(alerted, transform), 3);
+            Destroy(Instantiate(alerted, transform), 1);
         }
         animator.SetBool("isLeft", isLookLeft);
 
