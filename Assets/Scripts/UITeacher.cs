@@ -12,17 +12,29 @@ public class UITeacher : MonoBehaviour
     public GameObject menuSelectionRoot;
     public Transform whereToCreateButton;
     public GameObject buttonPrefab;
+    [Space]
+    public SoundEffect shoutSoundEffect;
+    public SoundEffect saySoundEffect;
 
     [Space]
     [Header("Other")]
     public teacher_skills teacherLogic;
 
-    [Tooltip("When choosing a name, the following gameobjects will be deactivated, so you cant click them for example")]
-    public GameObject[] deactivateWhileSelectingName;
+    [Tooltip("When choosing a name, the following BUTTONS (not gameobjects) will be deactivated, so you cant click them for example")]
+    public Selectable[] deactivateWhileSelectingName;
 
     enum SpeechCommand { None, Say, Shout };
     SpeechCommand lastSpeechCommand = SpeechCommand.None;
-    
+
+    private void Awake()
+    {
+        if (!saySoundEffect || !shoutSoundEffect) { 
+            Debug.LogError("You forgot to assign at least one of the soundEffect fields. " +
+                "The corresponding scripts should be located in the canvas on the say/shout buttons"); 
+        }
+
+    }
+
     // Creates the buttons and then deactivates the name selection panel, as this method
     // should only be called once on Start and the panel should be invisible initially
     public void InitializeNameSelection(List<string> studentNames)
@@ -40,7 +52,7 @@ public class UITeacher : MonoBehaviour
     public void OnClickedSayName()
     {
         // deactivate certain buttons and activate the name selection menu
-        foreach (var obj in deactivateWhileSelectingName) { obj.SetActive(false); }
+        foreach (var obj in deactivateWhileSelectingName) { obj.interactable = false; }
         menuSelectionRoot.SetActive(true);
 
         lastSpeechCommand = SpeechCommand.Say;
@@ -49,7 +61,7 @@ public class UITeacher : MonoBehaviour
     public void OnClickedShoutName()
     {
         // deactivate certain buttons and activate the name selection menu
-        foreach (var obj in deactivateWhileSelectingName) { obj.SetActive(false); }
+        foreach (var obj in deactivateWhileSelectingName) { obj.interactable = false; }
         menuSelectionRoot.SetActive(true);
 
         lastSpeechCommand = SpeechCommand.Shout;
@@ -62,8 +74,10 @@ public class UITeacher : MonoBehaviour
 
         if (lastSpeechCommand == SpeechCommand.Say) {
             teacherLogic.SayName(str);
+            saySoundEffect.PlaySound();
         } else if (lastSpeechCommand == SpeechCommand.Shout) {
             teacherLogic.ShoutName(name);
+            shoutSoundEffect.PlaySound();
         }
         CloseNameSelection();
     }
@@ -74,7 +88,7 @@ public class UITeacher : MonoBehaviour
     {
         lastSpeechCommand = SpeechCommand.None;
         // REactivate certain buttons and DEactivate the name selection menu
-        foreach (var obj in deactivateWhileSelectingName) { obj.SetActive(true); }
+        foreach (var obj in deactivateWhileSelectingName) { obj.interactable = true; }
         menuSelectionRoot.SetActive(false);
 
     }
