@@ -7,6 +7,11 @@ public class student_reactions : MonoBehaviour
     public StudentMovement myLegs;
     public studentAnimation myAnimator;
 
+    // the teacher will look at the sprite renderer when determining whether this student was clicked on
+    public SpriteRenderer mySpriteRenderer;
+
+    [HideInInspector] public Transform teacherTransform; // so we know what position to follow
+
     public bool isDeaf = false;
     public bool isHalfDead = false;
     public bool isRattle = false;
@@ -18,6 +23,15 @@ public class student_reactions : MonoBehaviour
 
     public string[] myNames = new string[] { "Viktor", "Jakub", "Adam", "Mario", "Palo", "Brano", "Daniel", "Igor" };
     public string myName;
+
+    private bool isFollowingTeacher = false;
+
+    private void Awake()
+    {
+        if (!mySpriteRenderer) { Debug.LogError("Forgot to assign MySpriteRenderer in student_reactions. This" +
+            "should already be assigned in the student prefab."); }
+    }
+
     void Start()
     {
         myName = myNames[Random.Range(0, myNames.Length)];
@@ -25,7 +39,14 @@ public class student_reactions : MonoBehaviour
 
     void Update()
     {
-        
+        if (isFollowingTeacher)
+        {
+            myLegs.SetTargetPosition(teacherTransform.position);
+        }
+        else
+        {
+            myLegs.SetTargetPosition(transform.position);
+        }
     }
 
     public void OnNameShouted(Vector3 position)
@@ -55,7 +76,7 @@ public class student_reactions : MonoBehaviour
             if(myAnimator.isLookLeft == true)
             {
                 //Debug.Log("vsimol som si ze si nalavo");
-                myLegs.SetTargetPosition(position);
+                isFollowingTeacher = !isFollowingTeacher;
             }
         }
         else
@@ -64,10 +85,16 @@ public class student_reactions : MonoBehaviour
             if (myAnimator.isLookLeft == false)
             {
                 //Debug.Log("vsimol som si ze si napravo");
-                myLegs.SetTargetPosition(position);
+                
+                isFollowingTeacher = !isFollowingTeacher;
             }
         }
         
+        if (isFollowingTeacher)
+        {
+
+        }
+
     }
     public void OnRattled(Vector3 position)
     {

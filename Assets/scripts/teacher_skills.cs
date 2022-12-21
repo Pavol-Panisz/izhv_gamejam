@@ -70,6 +70,7 @@ public class teacher_skills : MonoBehaviour
     {
         studentBrains.Clear();
         foreach (var brain in students) {
+            brain.teacherTransform = transform;
             studentBrains.Add(brain);    
         }
     }
@@ -118,6 +119,24 @@ public class teacher_skills : MonoBehaviour
 
     void Update()
     {
+        // look at each student in range whether they were clicked on
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 m = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            foreach (var student in studentBrains) {
+                if (Vector2.Distance(transform.position, student.transform.position) <= comeHereRadius)
+                {
+                    var sr = student.mySpriteRenderer;
+                    var b = sr.bounds;
+                    if (b.min.x < m.x && m.x < b.max.x && b.min.y < m.y && m.y < b.max.y)
+                    {
+                        Debug.Log("clicked on student " + student.myName);
+                        student.OnGoToTeacher(transform.position);
+                    }
+                    
+                }
+            }
+        }
 
     }
 }
