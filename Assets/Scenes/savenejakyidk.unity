@@ -10925,7 +10925,7 @@ MonoBehaviour:
   - {fileID: 3505446824251628462, guid: e956e664b1cafcd41bcd94ce1d059916, type: 3}
   - {fileID: 7530558642575920161, guid: 6bbbcfa5e24b4fb43b7d05e4bf27c2ee, type: 3}
   - {fileID: 7217927662441207814, guid: 3855124c1070c614ea9b895ab3c2c233, type: 3}
-  numberOfStanders: 50
+  numberOfStanders: 20
   spawnRadius: 20
   approximateMapCenter: {fileID: 1932472212}
   myNames:
@@ -10943,7 +10943,7 @@ MonoBehaviour:
     - {x: -2.9, y: 9.88, z: 0}
     radius: 2.55
   studentsParent: {fileID: 1932472212}
-  standersParent: {fileID: 1932472212}
+  standersParent: {fileID: 781829939}
   teacherUI: {fileID: 729344112}
   teacherSkills: {fileID: 148918397}
   possibleAttributeGroups:
