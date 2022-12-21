@@ -7,6 +7,8 @@ using UnityEditor;
 public class teacher_skills : MonoBehaviour
 {
     public Animator animator;
+    public float reactionTime;
+    public float sayTime;
 
     [Space]
     public string StudentTag;
@@ -96,35 +98,22 @@ public class teacher_skills : MonoBehaviour
     public void ShoutName(string calledName)
     {
         animator.SetBool("isShout", true);
-        StartCoroutine(coroutine());
-        foreach (var student in studentBrains) {
-            if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius) {
-                student.OnNameShouted(transform.position);
-            }
-        }
+        StartCoroutine(coroutineMS());
+        StartCoroutine(shout());
     }
 
     public void SayName(string calledName)
     {
         animator.SetBool("isSay", true);
         StartCoroutine(coroutine());
-        foreach (var student in studentBrains) {
-            if (Vector2.Distance(transform.position, student.transform.position) <= sayRadius)
-            {
-                student.OnNameSaid(calledName, transform.position);
-            }
-        }
+        StartCoroutine(say(calledName));
     }
 
     public void Rattle()
     {
         animator.SetBool("isMexico", true);
         StartCoroutine(coroutineMS());
-        foreach (var student in studentBrains) {
-            if (Vector2.Distance(transform.position, student.transform.position) <= rattleRadius) {
-                student.OnRattled(transform.position);
-            }
-        }
+        StartCoroutine(mexico());
     }
 
     // yeah this could be done a lot cleaner, but I don't have the time
@@ -184,16 +173,53 @@ public class teacher_skills : MonoBehaviour
     IEnumerator coroutine()
     {
         yield return new WaitForSeconds(0.5f);
-        animator.SetBool("isShout", false);
         animator.SetBool("isSay", false);
 
     }
 
     IEnumerator coroutineMS()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         animator.SetBool("isShow", false);
         animator.SetBool("isMexico", false);
+        animator.SetBool("isShout", false);
+    }
+    IEnumerator shout()
+    {
+        yield return new WaitForSeconds(reactionTime);
+        foreach (var student in studentBrains)
+        {
+            if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius)
+            {
+
+                student.OnNameShouted(transform.position);
+            }
+        }
+
+    }
+    IEnumerator say(string calledName)
+    {
+        yield return new WaitForSeconds(sayTime);
+        foreach (var student in studentBrains)
+        {
+            if (Vector2.Distance(transform.position, student.transform.position) <= sayRadius)
+            {
+                student.OnNameSaid(calledName, transform.position);
+            }
+        }
+
+    }
+    IEnumerator mexico()
+    {
+        yield return new WaitForSeconds(reactionTime);
+        foreach (var student in studentBrains)
+        {
+            if (Vector2.Distance(transform.position, student.transform.position) <= rattleRadius)
+            {
+                student.OnRattled(transform.position);
+            }
+        }
+
     }
 
 

@@ -133,6 +133,10 @@ public class levelLogic : MonoBehaviour
                 result = hit.position;
                 return result;
             }
+            else
+            {
+                i--;
+            }
         }
         return result;
     }
