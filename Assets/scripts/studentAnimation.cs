@@ -10,6 +10,7 @@ public class studentAnimation : MonoBehaviour
     public NavMeshAgent agent;
 
     public Animator animator;
+    public GameObject alerted;
 
     IEnumerator coroutinecka;
     void Start()
@@ -32,10 +33,12 @@ public class studentAnimation : MonoBehaviour
         if (Vector3.Dot(forward, toOther) < 0)
         {
             isLookLeft = true;
+            Destroy(Instantiate(alerted,transform),3);
         }
         else
         {
             isLookLeft = false;
+            Destroy(Instantiate(alerted, transform), 3);
         }
         animator.SetBool("isLeft", isLookLeft);
 
