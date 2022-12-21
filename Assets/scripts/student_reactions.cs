@@ -28,8 +28,11 @@ public class student_reactions : MonoBehaviour
 
     private void Awake()
     {
-        if (!mySpriteRenderer) { Debug.LogError("Forgot to assign MySpriteRenderer in student_reactions. This" +
-            "should already be assigned in the student prefab."); }
+        if (!mySpriteRenderer)
+        {
+            Debug.LogError("Forgot to assign MySpriteRenderer in student_reactions. This" +
+"should already be assigned in the student prefab.");
+        }
     }
 
     void Start()
@@ -46,7 +49,7 @@ public class student_reactions : MonoBehaviour
         else
         {
             myLegs.SetTargetPosition(transform.position);
-            
+
         }
     }
 
@@ -57,7 +60,7 @@ public class student_reactions : MonoBehaviour
         {
             myAnimator.onPlayLook(position);
         }
-        
+
     }
     public void OnNameSaid(string name, Vector3 position)
     {
@@ -74,7 +77,7 @@ public class student_reactions : MonoBehaviour
         if (Vector3.Dot(forward, toOther) < 0)
         {
             //Debug.Log("nalavo");
-            if(myAnimator.isLookLeft == true)
+            if (myAnimator.isLookLeft == true)
             {
                 //Debug.Log("vsimol som si ze si nalavo");
                 isFollowingTeacher = doFollow;
@@ -86,7 +89,7 @@ public class student_reactions : MonoBehaviour
             if (myAnimator.isLookLeft == false)
             {
                 //Debug.Log("vsimol som si ze si napravo");
-                
+
                 isFollowingTeacher = doFollow;
             }
         }
