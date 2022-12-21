@@ -6,6 +6,8 @@ using UnityEditor;
 
 public class teacher_skills : MonoBehaviour
 {
+    public Animator animator;
+
     [Space]
     public string StudentTag;
     public float shoutRadius;
@@ -93,6 +95,8 @@ public class teacher_skills : MonoBehaviour
 
     public void ShoutName(string name)
     {
+        animator.SetBool("isShout", true);
+        StartCoroutine(coroutine());
         foreach (var student in studentBrains) {
             if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius) {
                 student.OnNameShouted(transform.position);
@@ -102,6 +106,8 @@ public class teacher_skills : MonoBehaviour
 
     public void SayName(string name)
     {
+        animator.SetBool("isSay", true);
+        StartCoroutine(coroutine());
         foreach (var student in studentBrains) {
             if (Vector2.Distance(transform.position, student.transform.position) <= sayRadius)
             {
@@ -171,4 +177,12 @@ public class teacher_skills : MonoBehaviour
         }
 
     }
+
+    IEnumerator coroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("isShout", false);
+        animator.SetBool("isSay", false);
+    }
+
 }
