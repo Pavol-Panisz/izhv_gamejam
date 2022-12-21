@@ -50,6 +50,7 @@ MonoBehaviour:
   isLookLeft: 0
   agent: {fileID: 715214797286605752}
   animator: {fileID: 715214797248730956}
+  alerted: {fileID: 4352513916443616217, guid: 2a78b57c694cfb34e9fb3f741121ab28, type: 3}
 --- !u!95 &715214797248730956
 Animator:
   serializedVersion: 4
