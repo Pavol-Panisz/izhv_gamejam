@@ -19,7 +19,6 @@ public class StudentMovement : MonoBehaviour
 
     public void Start()
     {
-
         SetTargetPosition(transform.position);
     }
 
@@ -49,10 +48,5 @@ public class StudentMovement : MonoBehaviour
         SetAgentPosition();
 
         
-    }
-
-    void SetPosition()
-    {
-
     }
 }
