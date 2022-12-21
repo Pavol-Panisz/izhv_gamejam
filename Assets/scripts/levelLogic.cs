@@ -7,6 +7,8 @@ public class levelLogic : MonoBehaviour
 {
     public GameObject[] students;
     public int NumberOfStudents=5;
+    public GameObject[] standers;
+    public int numberOfStanders=20;
     public float spawnRadius;
 
     public Transform approximateMapCenter;
@@ -17,6 +19,7 @@ public class levelLogic : MonoBehaviour
 
     [Tooltip("The gameobject that will house all students so they dont spam the hierarchy")]
     public Transform studentsParent;
+    public Transform standersParent;
 
     public UITeacher teacherUI;
     public teacher_skills teacherSkills;
@@ -64,6 +67,12 @@ public class levelLogic : MonoBehaviour
             studentBrain.myLegs.Warp(spawnPos);
 
             accumulatedStudents[i] = studentBrain; // add the brain to the accumulated ones
+        }
+
+        for(int i = 0; i < numberOfStanders; i++)
+        {
+            int p = Random.Range(0, standers.Length);
+            Instantiate(standers[p], RandomPoint(approximateMapCenter.transform.position, spawnRadius), Quaternion.identity, standersParent);
         }
 
         // now that all students have been created, send the brains to the teacher so he can use em during distance
