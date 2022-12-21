@@ -39,7 +39,9 @@ public class teacher_skills : MonoBehaviour
     }
 
     // Should be called after all students are instantiated - puts all students into the internal students list
-    public void FindStudents()
+    // A better alternative (used by default in levelLogic) is AssignStudents, which doesnt need to use
+    // FindObjectsWithTag
+    private void FindStudents()
     {
         GameObject[] students = GameObject.FindGameObjectsWithTag(StudentTag);
         if (students.Length == 0) { 
@@ -61,6 +63,14 @@ public class teacher_skills : MonoBehaviour
             } else {
                 studentBrains.Add(brain);
             }
+        }
+    }
+
+    public void AssignStudents(student_reactions[] students)
+    {
+        studentBrains.Clear();
+        foreach (var brain in students) {
+            studentBrains.Add(brain);    
         }
     }
 
@@ -108,14 +118,6 @@ public class teacher_skills : MonoBehaviour
 
     void Update()
     {
-
-        foreach (var student in studentBrains)
-        {
-            if (Vector2.Distance(transform.position, student.transform.position) <= shoutRadius)
-            {
-                student.OnNameShouted(transform.position);
-            }
-        }
 
     }
 }

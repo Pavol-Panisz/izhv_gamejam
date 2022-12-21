@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StudentTag: Student
-  shoutRadius: 5.73
-  sayRadius: 9.31
+  shoutRadius: 5.16
+  sayRadius: 9.63
   rattleRadius: 7.49
   comeHereRadius: 6.77
   studentBrains: []
@@ -308,8 +308,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 624308997
-  m_SortingOrder: 509
+  m_SortingLayerID: 2092847923
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &6712294537297531133
 MonoBehaviour:
@@ -990,8 +990,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 624308997
-  m_SortingLayer: 4
+  m_SortingLayerID: 1009665515
+  m_SortingLayer: 2
   m_SortingOrder: 105
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.5471423, b: 0, a: 0.6392157}
@@ -1109,8 +1109,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 624308997
-  m_SortingLayer: 4
+  m_SortingLayerID: 1009665515
+  m_SortingLayer: 2
   m_SortingOrder: 105
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.5471423, b: 0, a: 0.6392157}
@@ -2485,7 +2485,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1033810075
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.8678622, g: 0.8679245, b: 0.22435024, a: 1}
@@ -2794,8 +2794,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 624308997
-  m_SortingLayer: 4
+  m_SortingLayerID: 1009665515
+  m_SortingLayer: 2
   m_SortingOrder: 105
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.5471423, b: 0, a: 0.6392157}
@@ -2878,8 +2878,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 624308997
-  m_SortingLayer: 4
+  m_SortingLayerID: 1009665515
+  m_SortingLayer: 2
   m_SortingOrder: 105
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0.5471423, b: 0, a: 0.6392157}

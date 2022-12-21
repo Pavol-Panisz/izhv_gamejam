@@ -7,12 +7,14 @@ public class student_reactions : MonoBehaviour
     public StudentMovement myLegs;
     public studentAnimation myAnimator;
 
-    public bool isDeaf;
-    public bool isHalfDead;
-    public bool isRattle;
-    public bool isBlind;
-    public bool isLoudScared;
-    public bool isIgnorant;
+    public bool isDeaf = false;
+    public bool isHalfDead = false;
+    public bool isRattle = false;
+    public bool isBlind = false;
+    public bool isLoudScared = false;
+    public bool isIgnorant = false;
+    public bool isLocated = false;
+    public Location likedLocation = null;
 
     public string[] myNames = new string[] { "Viktor", "Jakub", "Adam", "Mario", "Palo", "Brano", "Daniel", "Igor" };
     public string myName;

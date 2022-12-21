@@ -14,7 +14,7 @@ public class StudentMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        agent.updateUpAxis = false; 
     }
 
     public void Start()

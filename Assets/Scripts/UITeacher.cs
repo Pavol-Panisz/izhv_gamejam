@@ -98,7 +98,7 @@ public class UITeacher : MonoBehaviour
         AddNameButton("SomeName");
     }
 
-    private void AddNameButton(string studentName)
+    public void AddNameButton(string studentName)
     {
         GameObject btn = GameObject.Instantiate(buttonPrefab, whereToCreateButton);
         Transform textObj = btn.transform.GetChild(0);

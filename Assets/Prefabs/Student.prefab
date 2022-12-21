@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d8a1b75a7c10a4b955ece61730dba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reactsOnClick: 1
+  reactsOnClick: 0
 --- !u!114 &7234974589574882608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +214,11 @@ MonoBehaviour:
   isBlind: 0
   isLoudScared: 0
   isIgnorant: 0
+  isLocated: 0
+  likedLocation:
+    name: 
+    allPositions: []
+    radius: 0
   myNames:
   - Viktor
   - Jakub

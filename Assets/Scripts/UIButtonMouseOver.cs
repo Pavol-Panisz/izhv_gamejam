@@ -9,8 +9,8 @@ public class UIButtonMouseOver : MonoBehaviour
     public UnityEvent onMouseLeave;
 
     private RectTransform myRectTr;
-    private Vector3 bottomLeft; // corners in world space
-    private Vector3 topRight;
+    private Vector3 baseBottomLeft; // corners in world space
+    private Vector3 baseTopRight;
 
     private bool wasHoveredLastFrame = false;
 
@@ -21,11 +21,11 @@ public class UIButtonMouseOver : MonoBehaviour
         Vector3[] corners = new Vector3[4];
         myRectTr.GetWorldCorners(corners);
 
-        bottomLeft = corners[0];
-        topRight = corners[2];
+        baseBottomLeft = corners[0] - Camera.main.transform.position;
+        baseTopRight = corners[2]  - Camera.main.transform.position;
 
         //Debug.Log(transform.name + " corners: " + bottomLeft + " " + topRight);
-        
+
     }
 
     private void Update()
@@ -34,6 +34,9 @@ public class UIButtonMouseOver : MonoBehaviour
         //   Debug.Log(mouseWorldPos);
 
         bool isHovered = false;
+
+        Vector3 bottomLeft = baseBottomLeft + Camera.main.transform.position;
+        Vector3 topRight = baseTopRight + Camera.main.transform.position;
 
         if (bottomLeft.x <= mouseWorldPos.x && mouseWorldPos.x <= topRight.x)
         {
