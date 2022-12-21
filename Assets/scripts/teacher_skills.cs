@@ -118,6 +118,8 @@ public class teacher_skills : MonoBehaviour
 
     public void Rattle()
     {
+        animator.SetBool("isMexico", true);
+        StartCoroutine(coroutineMS());
         foreach (var student in studentBrains) {
             if (Vector2.Distance(transform.position, student.transform.position) <= rattleRadius) {
                 student.OnRattled(transform.position);
@@ -162,7 +164,8 @@ public class teacher_skills : MonoBehaviour
                         else if (clickedRight) { doFollow = false; }
 
                         student.OnSetFollowTeacher(doFollow);
-
+                        animator.SetBool("isShow", true);
+                        StartCoroutine(coroutineMS());
                         if (doFollow == true) {
                             followMeSfx.PlaySound();
                         }
@@ -183,6 +186,15 @@ public class teacher_skills : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("isShout", false);
         animator.SetBool("isSay", false);
+
     }
+
+    IEnumerator coroutineMS()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isShow", false);
+        animator.SetBool("isMexico", false);
+    }
+
 
 }
