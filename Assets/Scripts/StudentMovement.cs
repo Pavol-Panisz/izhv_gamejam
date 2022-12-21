@@ -26,6 +26,7 @@ public class StudentMovement : MonoBehaviour
     public void SetTargetPosition(Vector3 pos)
     {
         target = pos;
+
     }
 
     private void SetTargetPositionClick()

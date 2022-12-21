@@ -7,6 +7,8 @@ public class student_reactions : MonoBehaviour
     public StudentMovement myLegs;
     public studentAnimation myAnimator;
 
+    Vector3 rattle_pos;
+
     // the teacher will look at the sprite renderer when determining whether this student was clicked on
     public SpriteRenderer mySpriteRenderer;
 
@@ -37,7 +39,7 @@ public class student_reactions : MonoBehaviour
 
     void Start()
     {
-        myName = myNames[Random.Range(0, myNames.Length)];
+        rattle_pos = transform.position;
     }
 
     void Update()
@@ -49,6 +51,10 @@ public class student_reactions : MonoBehaviour
         else
         {
             myLegs.SetTargetPosition(transform.position);
+            if (isRattle) 
+            {
+                myLegs.SetTargetPosition(rattle_pos);    
+            }
 
         }
     }
@@ -60,12 +66,21 @@ public class student_reactions : MonoBehaviour
             myAnimator.onPlayLook(position);
         }
     }
-    public void OnNameSaid(string name, Vector3 position)
+    public void OnNameSaid(string calledName, Vector3 position)
     {
-        Debug.Log("on name said called on " + this.myName);
-        if (!isDeaf && !isHalfDead && !isIgnorant && string.Equals(name, myName))
+
+        Debug.Log("on name said called on " + this.myName + "  " + calledName);
+        if (!isDeaf && !isHalfDead && string.Equals(calledName, myName))
         {
-            myAnimator.onPlayLook(position);
+            if (isBlind)
+            {
+                Debug.Log("hej som slepy nehovor moje meno pls");
+                myAnimator.onNameSaidBlind();
+            }
+            else
+            {
+                myAnimator.onPlayLook(position);
+            }
         }
     }
     public void OnSetFollowTeacher(bool doFollow)
@@ -94,10 +109,12 @@ public class student_reactions : MonoBehaviour
     }
     public void OnRattled(Vector3 position)
     {
+        //Debug.Log("cotijebe hrkalka UAAAA");
         if (isRattle)
         {
-            Debug.Log("cotijebe hrkalka UAAAA");
-            myLegs.SetTargetPosition(position);
+            myAnimator.onRattled();
+            //Debug.Log("cotijebe hrkalka UAAAA");
+            rattle_pos = position;
         }
     }
 }

@@ -52,12 +52,37 @@ public class studentAnimation : MonoBehaviour
 
         StartCoroutine(coroutine());
     }
+
+    public void onNameSaidBlind()
+    {
+        Destroy(Instantiate(alerted, transform), 1);
+        isLookLeft = !isLookLeft;
+        animator.SetBool("isLeft", isLookLeft);
+        StartCoroutine(random());
+    }
+
+    public void onRattled()
+    {
+        Destroy(Instantiate(alerted, transform), 1);
+    }
     IEnumerator coroutine()
     {
         //Debug.Log("kuk sem");
         yield return new WaitForSeconds(Random.RandomRange(2,6));
         animator.SetBool("isLeft",isLookLeft);
         onRandomLook();
+    }
+
+    IEnumerator random()
+    {
+        //Debug.Log("kuk sem");
+        for(int i = 0; i<6; i++)
+        {
+            isLookLeft = !isLookLeft;
+            yield return new WaitForSeconds(0.4f);
+            animator.SetBool("isLeft",isLookLeft);
+        }
+
     }
 
 }

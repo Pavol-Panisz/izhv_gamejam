@@ -93,7 +93,7 @@ public class teacher_skills : MonoBehaviour
         }
     }
 
-    public void ShoutName(string name)
+    public void ShoutName(string calledName)
     {
         animator.SetBool("isShout", true);
         StartCoroutine(coroutine());
@@ -104,14 +104,14 @@ public class teacher_skills : MonoBehaviour
         }
     }
 
-    public void SayName(string name)
+    public void SayName(string calledName)
     {
         animator.SetBool("isSay", true);
         StartCoroutine(coroutine());
         foreach (var student in studentBrains) {
             if (Vector2.Distance(transform.position, student.transform.position) <= sayRadius)
             {
-                student.OnNameSaid(student.name, transform.position);
+                student.OnNameSaid(calledName, transform.position);
             }
         }
     }
@@ -119,7 +119,7 @@ public class teacher_skills : MonoBehaviour
     public void Rattle()
     {
         foreach (var student in studentBrains) {
-            if (Vector2.Distance(transform.position, student.transform.position) <= sayRadius) {
+            if (Vector2.Distance(transform.position, student.transform.position) <= rattleRadius) {
                 student.OnRattled(transform.position);
             }
         }
