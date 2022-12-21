@@ -84,6 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myLegs: {fileID: 9016426867843085372}
   myAnimator: {fileID: 9016426867880698048}
+  mySpriteRenderer: {fileID: 9016426867880698049}
+  teacherTransform: {fileID: 0}
   isDeaf: 0
   isHalfDead: 0
   isRattle: 0
@@ -105,6 +107,7 @@ MonoBehaviour:
   - Daniel
   - Igor
   myName: 
+  isFollowingTeacher: 0
 --- !u!1 &9016426867880698061
 GameObject:
   m_ObjectHideFlags: 0

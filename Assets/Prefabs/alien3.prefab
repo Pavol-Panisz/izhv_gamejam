@@ -224,6 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myLegs: {fileID: 4237973781717028070}
   myAnimator: {fileID: 4237973781687801882}
+  mySpriteRenderer: {fileID: 4237973781687801883}
+  teacherTransform: {fileID: 0}
   isDeaf: 0
   isHalfDead: 0
   isRattle: 0
@@ -245,3 +247,4 @@ MonoBehaviour:
   - Daniel
   - Igor
   myName: 
+  isFollowingTeacher: 0

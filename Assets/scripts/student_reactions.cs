@@ -46,6 +46,7 @@ public class student_reactions : MonoBehaviour
         else
         {
             myLegs.SetTargetPosition(transform.position);
+            
         }
     }
 

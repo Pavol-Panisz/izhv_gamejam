@@ -7,6 +7,7 @@ public class levelLogic : MonoBehaviour
 {
     public GameObject[] students;
     public int NumberOfStudents=5;
+    public float spawnRadius;
 
     public Transform approximateMapCenter;
 
@@ -55,12 +56,12 @@ public class levelLogic : MonoBehaviour
 
             // calculate position
             Vector3 spawnPos;
-            if (studentBrain.isLocated == false) { 
-                spawnPos = RandomPoint(approximateMapCenter.position, 20f);
+            if (studentBrain.isLocated == false) {
+                spawnPos = RandomPoint(approximateMapCenter.transform.position, spawnRadius);
             } else { // if likes a location
                 spawnPos = RandomPoint(studentBrain.likedLocation.allPositions[0], studentBrain.likedLocation.radius);
             }
-            studentBrain.transform.position = spawnPos;
+            studentBrain.myLegs.Warp(spawnPos);
 
             accumulatedStudents[i] = studentBrain; // add the brain to the accumulated ones
         }

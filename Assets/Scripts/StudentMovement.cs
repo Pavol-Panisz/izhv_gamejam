@@ -39,20 +39,26 @@ public class StudentMovement : MonoBehaviour
 
     void SetAgentPosition()
     {
-        agent.SetDestination(new Vector3(target.x, target.y, 0f));
+        try
+        {
+            agent.SetDestination(new Vector3(target.x, target.y, 0f));
+        } catch
+        {
+            Debug.Log("unsuccesfully set agent destination with targer " + 
+                target.x + " " + target.y);
+        }
     }
 
-    // Update is called once per frame
+    public void Warp(Vector3 pos)
+    {
+        agent.Warp(pos);
+    }
+
     void Update()
     {
         if (reactsOnClick) { SetTargetPositionClick(); }
         SetAgentPosition();
 
         
-    }
-
-    void SetPosition()
-    {
-
     }
 }
