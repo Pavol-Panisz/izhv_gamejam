@@ -55,17 +55,15 @@ public class student_reactions : MonoBehaviour
 
     public void OnNameShouted(Vector3 position)
     {
-        Debug.Log("on name shouted called on " + this.myName);
         if (!isDeaf)
         {
             myAnimator.onPlayLook(position);
         }
-
     }
     public void OnNameSaid(string name, Vector3 position)
     {
         Debug.Log("on name said called on " + this.myName);
-        if (!isDeaf && !isHalfDead && !isIgnorant)
+        if (!isDeaf && !isHalfDead && !isIgnorant && string.Equals(name, myName))
         {
             myAnimator.onPlayLook(position);
         }
