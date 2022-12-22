@@ -510,7 +510,7 @@ MonoBehaviour:
   m_text: '
 
     Alien without eyes hears you but doesnt know where you are, if you
-    want to get him to follow you you have to be as close as possibleto him
+    want to get him to follow you you have to be as close as possible to him
 
 '
   m_isRightToLeft: 0
@@ -2104,6 +2104,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 670906884}
     - target: {fileID: 5773429564980627753, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
+      propertyPath: sayRadius
+      value: 2.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773429564980627753, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
+      propertyPath: shoutRadius
+      value: 4.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773429564980627753, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
+      propertyPath: rattleRadius
+      value: 4.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773429564980627753, guid: 6266e018d1a49494c8cafef7809def1f, type: 3}
       propertyPath: reactionTime
       value: 0.3
       objectReference: {fileID: 0}
@@ -2223,6 +2235,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &683239452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 683239453}
+  m_Layer: 0
+  m_Name: Fallback Rand Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &683239453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683239452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.429601, y: 2.3609588, z: -0.570861}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1750906619}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &718439496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,10 +2533,10 @@ MonoBehaviour:
   m_text: '
 
 
-    Maybe having them separated wasnt the best option, because now
+    Maybe having them SEPARATED wasnt the best option, because now
     you
 
-    have to join them together'
+    have to JOIN them together'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -3743,7 +3787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.212}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1220392768
@@ -3772,7 +3816,10 @@ MonoBehaviour:
     Alien with no ears doesnt hear any sounds, you can only call him
     when he is looking at you
 
-'
+    <b>left click - "follow me"
+
+    right click -
+    "stop following"</b>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -47126,6 +47173,7 @@ MonoBehaviour:
   - {fileID: 7217927662441207814, guid: 3855124c1070c614ea9b895ab3c2c233, type: 3}
   numberOfStanders: 0
   spawnRadius: 20
+  fallbackRandomPointsParent: {fileID: 683239453}
   isTutorialSpawner: 1
   approximateMapCenter: {fileID: 1524328964}
   myNames:
@@ -47612,6 +47660,37 @@ RectTransform:
   m_AnchoredPosition: {x: 37.34175, y: 6.382927}
   m_SizeDelta: {x: 1.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1750906618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750906619}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1750906619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750906618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.43, y: -2.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 683239453}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791140220
 GameObject:
   m_ObjectHideFlags: 0
@@ -47677,7 +47756,7 @@ MonoBehaviour:
     favorite object so much
 
     they spend
-    they whole time near it
+    their whole time near it
 
 '
   m_isRightToLeft: 0
