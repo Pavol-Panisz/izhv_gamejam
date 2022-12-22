@@ -16,12 +16,12 @@ public class buttonhover : MonoBehaviour, IPointerExitHandler, IPointerEnterHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         pb.image.sprite = Hover;
-        Debug.Log("Mouse Enter");
+        //Debug.Log("Mouse Enter");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Mouse Exit");
+        //Debug.Log("Mouse Exit");
         pb.image.sprite = notHover;
         //Change Image back to default?
     }

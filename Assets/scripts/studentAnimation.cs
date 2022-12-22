@@ -77,10 +77,10 @@ public class studentAnimation : MonoBehaviour
     IEnumerator random()
     {
         //Debug.Log("kuk sem");
-        for(int i = 0; i<6; i++)
+        for(int i = 0; i<10; i++)
         {
             isLookLeft = !isLookLeft;
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.2f);
             animator.SetBool("isLeft",isLookLeft);
         }
 
