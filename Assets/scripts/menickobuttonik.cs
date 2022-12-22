@@ -11,7 +11,7 @@ public class menickobuttonik : MonoBehaviour
     {
         SceneManager.LoadScene(scene_teleport1, LoadSceneMode.Single);
     }
-    public void onClick2()
+    public void onClicktutorial()
     {
         SceneManager.LoadScene(scene_teleport2, LoadSceneMode.Single);
     }
