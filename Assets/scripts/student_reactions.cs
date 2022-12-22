@@ -85,8 +85,12 @@ public class student_reactions : MonoBehaviour
     }
     public void OnSetFollowTeacher(bool doFollow)
     {
-        if ((isBlind || isRattle) && Vector3.Distance(teacherTransform.position, transform.position) > 2f)
+        if (isBlind || isRattle)
         {
+            if (Vector3.Distance(teacherTransform.position, transform.position) > 2f) {
+                return;
+            }
+            isFollowingTeacher = doFollow;
             return;
         }
         Vector3 forward = transform.TransformDirection(Vector3.right);

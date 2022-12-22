@@ -11,6 +11,8 @@ public class levelLogic : MonoBehaviour
     public int numberOfStanders=20;
     public float spawnRadius;
 
+    public bool isTutorialSpawner = false;
+
     public Transform approximateMapCenter;
 
     public string[] myNames = new string[] { "Viktor", "Jakub", "Adam", "Mario", "Palo", "Brano", "Daniel", "Igor" };
@@ -24,7 +26,7 @@ public class levelLogic : MonoBehaviour
     public UITeacher teacherUI;
     public teacher_skills teacherSkills;
 
-    public StudentAttributeGroup[] possibleAttributeGroups;
+    public List <StudentAttributeGroup> possibleAttributeGroups;
 
     private void Awake()
     {
@@ -44,10 +46,10 @@ public class levelLogic : MonoBehaviour
         for (int i = 0; i < NumberOfStudents; i++)
         {
             int p = Random.Range(0, students.Length); // index of student variant to spawn
-
+            int type = Random.Range(0, possibleAttributeGroups.Count);
             // the random group of attributes this student will be assigned
-            var attributeGroup = possibleAttributeGroups[Random.Range(0, possibleAttributeGroups.Length)];
-
+            var attributeGroup = possibleAttributeGroups[type];
+            possibleAttributeGroups.RemoveAt(type);
             GameObject myBoi = Instantiate(students[p], Vector3.zero, Quaternion.identity, studentsParent); // instantiate one of the 5 student variants
             student_reactions studentBrain = myBoi.GetComponent<student_reactions>();
 
@@ -66,6 +68,47 @@ public class levelLogic : MonoBehaviour
             }
             studentBrain.myLegs.Warp(spawnPos);
 
+            if (isTutorialSpawner)
+            {
+                foreach (var attribute in attributeGroup.group)
+                {
+                    if (attribute == StudentAttributes.halfDeaf)
+                    {
+                        Debug.Log("som jeden polohluchy xd");
+                        studentBrain.myLegs.Warp(new Vector3(9, 0, 0));
+                    }
+                    if (attribute == StudentAttributes.deaf)
+                    {
+                        Debug.Log("som jeden hluchy xd");
+                        studentBrain.myLegs.Warp(new Vector3(21, 0, 0));
+                    }
+                    if (attribute == StudentAttributes.blind)
+                    {
+                        Debug.Log("som jeden sllepy xsdd");
+                        studentBrain.myLegs.Warp(new Vector3(33, 0, 0));
+                    }
+                    if (attribute == StudentAttributes.located)
+                    {
+                        Debug.Log("som pri cokolade");
+                        studentBrain.myLegs.Warp(new Vector3(45, 0, 0));
+                    }
+                    if (attribute == StudentAttributes.rattled)
+                    {
+                        Debug.Log("som jeden mexican");
+                        studentBrain.myLegs.Warp(new Vector3(57, 0, 0));
+                    }
+                    if (attribute == StudentAttributes.loudScared)
+                    {
+                        Debug.Log("som vystraseny z kriku xd");
+                        studentBrain.myLegs.Warp(new Vector3(69, 0, 0));
+                    }
+                    if (attribute == StudentAttributes.ignorant)
+                    {
+                        Debug.Log("soom jeden mampicista xd");
+                        studentBrain.myLegs.Warp(new Vector3(81, 0, 0));
+                    }
+                }
+            }
             accumulatedStudents[i] = studentBrain; // add the brain to the accumulated ones
         }
 
