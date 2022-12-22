@@ -70,7 +70,7 @@ public class student_reactions : MonoBehaviour
     {
 
         Debug.Log("on name said called on " + this.myName + "  " + calledName);
-        if (!isDeaf && !isHalfDead && string.Equals(calledName, myName))
+        if (!isRattle && !isDeaf && !isHalfDead && string.Equals(calledName, myName))
         {
             if (isBlind)
             {
@@ -85,6 +85,10 @@ public class student_reactions : MonoBehaviour
     }
     public void OnSetFollowTeacher(bool doFollow)
     {
+        if ((isBlind || isRattle) && Vector3.Distance(teacherTransform.position, transform.position) > 2f)
+        {
+            return;
+        }
         Vector3 forward = transform.TransformDirection(Vector3.right);
         Vector3 toOther = teacherTransform.position - transform.position;
         if (Vector3.Dot(forward, toOther) < 0)
@@ -114,7 +118,10 @@ public class student_reactions : MonoBehaviour
         {
             myAnimator.onRattled();
             //Debug.Log("cotijebe hrkalka UAAAA");
-            rattle_pos = position;
+            if (!isBlind) 
+            { 
+                rattle_pos = position;
+            }
         }
     }
 }
