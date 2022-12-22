@@ -91,6 +91,7 @@ public class student_reactions : MonoBehaviour
             if (isBlind)
             {
                 myAnimator.onNameSaidBlind();
+                Debug.Log("ci moj kokot kde si");
             }
             else
             {
@@ -167,6 +168,11 @@ public class student_reactions : MonoBehaviour
             if (!isBlind) 
             { 
                 rattle_pos = position;
+            }
+            else
+            {
+                myAnimator.onNameSaidBlind();
+                Debug.Log("ci moj kokot kde si");
             }
         }
     }

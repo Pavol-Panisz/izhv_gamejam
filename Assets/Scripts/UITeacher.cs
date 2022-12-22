@@ -5,11 +5,13 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class UITeacher : MonoBehaviour
 {
     [Header("Name selection related")]
     public GameObject menuSelectionRoot;
+    public GameObject endMenu;
     public Transform whereToCreateButton;
     public GameObject buttonPrefab;
     [Space]
@@ -23,6 +25,8 @@ public class UITeacher : MonoBehaviour
     [Tooltip("When choosing a name, the following BUTTONS (not gameobjects) will be deactivated, so you cant click them for example")]
     public Selectable[] deactivateWhileSelectingName;
 
+    public GameObject bus;
+
     enum SpeechCommand { None, Say, Shout };
     SpeechCommand lastSpeechCommand = SpeechCommand.None;
 
@@ -33,6 +37,14 @@ public class UITeacher : MonoBehaviour
                 "The corresponding scripts should be located in the canvas on the say/shout buttons"); 
         }
 
+    }
+
+    void Update()
+    {
+        if (Vector3.Distance(bus.transform.position,transform.position)<2f)
+        {
+            endMenu.SetActive(true);
+        }    
     }
 
     // Creates the buttons and then deactivates the name selection panel, as this method
@@ -89,6 +101,13 @@ public class UITeacher : MonoBehaviour
         lastSpeechCommand = SpeechCommand.None;
         // REactivate certain buttons and DEactivate the name selection menu
         foreach (var obj in deactivateWhileSelectingName) { obj.interactable = true; }
+        menuSelectionRoot.SetActive(false);
+
+    }
+
+    public void EndGoToMenu()
+    {
+        SceneManager.LoadScene("menuScene", LoadSceneMode.Single);
         menuSelectionRoot.SetActive(false);
 
     }
