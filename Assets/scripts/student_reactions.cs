@@ -85,7 +85,7 @@ public class student_reactions : MonoBehaviour
     }
     public void OnSetFollowTeacher(bool doFollow)
     {
-        if (isBlind || isRattle)
+        if (isBlind || isRattle || isIgnorant)
         {
             if (Vector3.Distance(teacherTransform.position, transform.position) > 2f) {
                 return;
