@@ -11,6 +11,9 @@ public class levelLogic : MonoBehaviour
     public int numberOfStanders=20;
     public float spawnRadius;
 
+    public List<student_reactions> MyStudents;
+    public List<student_reactions> AllStudents;
+
     [Space]
     [Header("If no good random point is found, one of these will be that point")]
     public Transform fallbackRandomPointsParent;
@@ -36,6 +39,9 @@ public class levelLogic : MonoBehaviour
 
     private void Awake()
     {
+        MyStudents = new List<student_reactions>();
+        AllStudents = new List<student_reactions>();
+
         if (!fallbackRandomPointsParent) { Debug.LogError("forgot to assign fallback random points in levelLogic"); }
         
         if (!teacherUI) { Debug.LogError("You forgot to assign teacherUI! Put UITeacherLogic from Canvas over there"); }
