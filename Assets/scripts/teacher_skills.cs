@@ -7,6 +7,7 @@ using UnityEditor;
 public class teacher_skills : MonoBehaviour
 {
     public Animator animator;
+    public GameObject NameSelectionMenu;
     public float reactionTime;
     public float sayTime;
 
@@ -48,6 +49,8 @@ public class teacher_skills : MonoBehaviour
 
     private void Awake()
     {
+        if (!NameSelectionMenu) { Debug.LogError("Forgot to assign name selection menu for teacher_skills."); }
+        
         if (!followMeSfx || !stopFollowingMeSfx)
         {
             if (!followMeSfx || !stopFollowingMeSfx)
@@ -136,7 +139,7 @@ public class teacher_skills : MonoBehaviour
         bool clickedRight = Input.GetMouseButtonDown(1);
 
         // look at each student in range whether they were clicked on
-        if (clickedLeft || clickedRight)
+        if ((clickedLeft || clickedRight) && !NameSelectionMenu.activeInHierarchy) // can click only if name selection isnt visible
         {
             Vector3 m = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             foreach (var student in studentBrains) {

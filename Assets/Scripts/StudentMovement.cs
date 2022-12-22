@@ -10,6 +10,8 @@ public class StudentMovement : MonoBehaviour
 
     public bool reactsOnClick;
 
+    private float defaultWalkSpeed = 0f;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,7 +21,7 @@ public class StudentMovement : MonoBehaviour
 
     public void Start()
     {
-
+        defaultWalkSpeed = agent.speed;
         SetTargetPosition(transform.position);
     }
 
@@ -61,5 +63,15 @@ public class StudentMovement : MonoBehaviour
         SetAgentPosition();
 
         
+    }
+
+    public void SetWalkSpeedToRun()
+    {
+        agent.speed = defaultWalkSpeed * 3f;
+    }
+
+    public void SetWalkSpeedToDefault()
+    {
+        agent.speed = defaultWalkSpeed;
     }
 }

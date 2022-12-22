@@ -11,6 +11,7 @@ public class studentAnimation : MonoBehaviour
 
     public Animator animator;
     public GameObject alerted;
+    public GameObject scared; // this shows above a kids head when it is loudScared and you shout
 
     IEnumerator coroutinecka;
     void Start()

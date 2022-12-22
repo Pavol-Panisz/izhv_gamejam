@@ -11,11 +11,17 @@ public class levelLogic : MonoBehaviour
     public int numberOfStanders=20;
     public float spawnRadius;
 
+    [Space]
+    [Header("If no good random point is found, one of these will be that point")]
+    public Transform fallbackRandomPointsParent;
+    
+    [Space]
     public Transform approximateMapCenter;
 
     public string[] myNames = new string[] { "Viktor", "Jakub", "Adam", "Mario", "Palo", "Brano", "Daniel", "Igor" };
     public Location[] locations;
 
+    public System.Action OnLeveLSetupComplete;
 
     [Tooltip("The gameobject that will house all students so they dont spam the hierarchy")]
     public Transform studentsParent;
@@ -28,6 +34,8 @@ public class levelLogic : MonoBehaviour
 
     private void Awake()
     {
+        if (!fallbackRandomPointsParent) { Debug.LogError("forgot to assign fallback random points in levelLogic"); }
+        
         if (!teacherUI) { Debug.LogError("You forgot to assign teacherUI! Put UITeacherLogic from Canvas over there"); }
         if (!teacherSkills) { Debug.LogError("You forgot to assign teacherSkills!"); }
 
@@ -57,12 +65,15 @@ public class levelLogic : MonoBehaviour
             studentBrain.myName = myNames[Random.Range(0, myNames.Length)];
             teacherUI.AddNameButton(studentBrain.myName);
 
+            // give a list of random points in case navmesh position finding fails
+            studentBrain.fallbackRandomPoints = fallbackRandomPointsParent;
+
             // calculate position
             Vector3 spawnPos;
             if (studentBrain.isLocated == false) {
-                spawnPos = RandomPoint(approximateMapCenter.transform.position, spawnRadius);
+                spawnPos = RandomPoint(approximateMapCenter.transform.position, spawnRadius, fallbackRandomPointsParent);
             } else { // if likes a location
-                spawnPos = RandomPoint(studentBrain.likedLocation.allPositions[0], studentBrain.likedLocation.radius);
+                spawnPos = RandomPoint(studentBrain.likedLocation.allPositions[0], studentBrain.likedLocation.radius, fallbackRandomPointsParent);
             }
             studentBrain.myLegs.Warp(spawnPos);
 
@@ -72,12 +83,14 @@ public class levelLogic : MonoBehaviour
         for(int i = 0; i < numberOfStanders; i++)
         {
             int p = Random.Range(0, standers.Length);
-            Instantiate(standers[p], RandomPoint(approximateMapCenter.transform.position, spawnRadius), Quaternion.identity, standersParent);
+            Instantiate(standers[p], RandomPoint(approximateMapCenter.transform.position, spawnRadius, fallbackRandomPointsParent), Quaternion.identity, standersParent);
         }
 
         // now that all students have been created, send the brains to the teacher so he can use em during distance
         // checks and when calling their methods (usually following the naming convention OnX)
         teacherSkills.AssignStudents(accumulatedStudents);
+
+        if (OnLeveLSetupComplete != null) { OnLeveLSetupComplete.Invoke(); }
     }
 
     // Yeah I know this could be done better
@@ -119,10 +132,13 @@ public class levelLogic : MonoBehaviour
         brain.likedLocation.radius = locationGroup.radius;
     }
 
+
     // ripped straight from the unity docs :)
-    Vector3 RandomPoint(Vector3 center, float range)
+    public static Vector3 RandomPoint(Vector3 center, float range, Transform fallbackRandomPointsParent)
     {
-        Vector3 result = Vector3.zero; 
+
+
+        Vector3 result = fallbackRandomPointsParent.GetChild(Random.Range(0, fallbackRandomPointsParent.childCount)).position;
 
         for (int i = 0; i < 30; i++)
         {
@@ -162,3 +178,10 @@ public class Location
     public Vector3[] allPositions;
     public float radius; // in what radius the student can spawn
 }
+
+
+
+
+
+
+
