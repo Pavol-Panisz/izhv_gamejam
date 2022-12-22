@@ -2131,8 +2131,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2e2be6e3faf02944189a0bcaf9ff9299, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.31
-  m_Pitch: -1.79
+  m_Volume: 0.16
+  m_Pitch: 0.61
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -4959,7 +4959,7 @@ MonoBehaviour:
     - {x: -2.9, y: 9.88, z: 0}
     radius: 2
   studentsParent: {fileID: 1932472212}
-  standersParent: {fileID: 1932472212}
+  standersParent: {fileID: 781829939}
   teacherUI: {fileID: 729344112}
   teacherSkills: {fileID: 148918397}
   possibleAttributeGroups:
