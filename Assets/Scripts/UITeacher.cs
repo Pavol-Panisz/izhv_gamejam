@@ -22,6 +22,8 @@ public class UITeacher : MonoBehaviour
     [Header("Other")]
     public teacher_skills teacherLogic;
 
+    public turnonoff spinac;
+
     [Tooltip("When choosing a name, the following BUTTONS (not gameobjects) will be deactivated, so you cant click them for example")]
     public Selectable[] deactivateWhileSelectingName;
 
@@ -59,6 +61,11 @@ public class UITeacher : MonoBehaviour
     public void OnClickedRattle()
     {
         teacherLogic.Rattle();
+    }
+
+    public void OnClickedToggleMute()
+    {
+        spinac.toggleAudio();
     }
 
     public void OnClickedSayName()
