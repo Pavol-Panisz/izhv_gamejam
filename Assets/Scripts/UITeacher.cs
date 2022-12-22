@@ -119,24 +119,8 @@ public class UITeacher : MonoBehaviour
 
     }
 
-    [MenuItem("CUSTOM DEBUG/add name selection button")]
-    static void DebugAddButton()
-    {
-        var obj = Selection.activeGameObject;
-        var uiteacher = obj.GetComponent<UITeacher>();
-        if (!uiteacher)
-        {
-            Debug.LogError("To perform this you must select the UIteacher (who should have UITeacher on him)");
-        }
-        else
-        {
-            uiteacher._DebugAddButton();
-        }
-    }
-
-    private void _DebugAddButton() {
-        AddNameButton("SomeName");
-    }
+    //[MenuItem("CUSTOM DEBUG/add name selection button")]
+    
 
     public void AddNameButton(string studentName)
     {

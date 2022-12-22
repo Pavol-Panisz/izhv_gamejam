@@ -33,19 +33,8 @@ public class teacher_skills : MonoBehaviour
     public Transform rattleRadiusVisual;
     public Transform comeHereRadiusVisual;
 
-    [MenuItem("CUSTOM DEBUG/teacher findStudents")]
-    static void DebugFindStudents()
-    {
-        var obj = Selection.activeGameObject;
-        var teacher = obj.GetComponent<teacher_skills>();
-        if (!teacher)
-        {
-            Debug.LogError("To perform this you must select the teacher (who should have teacher_skills on him)");
-        } else
-        {
-            teacher.FindStudents();
-        }
-    }
+    //[MenuItem("CUSTOM DEBUG/teacher findStudents")]
+    //
 
     private void Awake()
     {
