@@ -63,7 +63,7 @@ public class levelLogic : MonoBehaviour
 
     void Start()
     {
-        if (NumberOfStudents < possibleAttributeGroups.Count)
+        if (NumberOfStudents > possibleAttributeGroups.Count)
         {
             Debug.LogError("possibleAttributeGroups doesnt have enough attribute-combinations for all the students: " +
                 possibleAttributeGroups.Count + " / " + NumberOfStudents);
