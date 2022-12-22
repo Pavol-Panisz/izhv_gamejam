@@ -2,15 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class levelLogic : MonoBehaviour
 {
     public GameObject[] students;
+    public int NumberOfMyStudents;
     public int NumberOfStudents=5;
     public GameObject[] standers;
     public int numberOfStanders=20;
     public float spawnRadius;
 
+    [Space]
+    public GameObject kidInfoTextPrefab;
+    public Transform whereToSpawnEm;
+
+    [Space]
     public List<student_reactions> MyStudents;
     public List<student_reactions> AllStudents;
 
@@ -37,6 +44,7 @@ public class levelLogic : MonoBehaviour
 
     public List <StudentAttributeGroup> possibleAttributeGroups;
 
+
     private void Awake()
     {
         MyStudents = new List<student_reactions>();
@@ -55,9 +63,17 @@ public class levelLogic : MonoBehaviour
 
     void Start()
     {
+        if (NumberOfStudents < possibleAttributeGroups.Count)
+        {
+            Debug.LogError("possibleAttributeGroups doesnt have enough attribute-combinations for all the students: " +
+                possibleAttributeGroups.Count + " / " + NumberOfStudents);
+        }
+
         var accumulatedStudents = new student_reactions[NumberOfStudents];
 
-        for (int i = 0; i < NumberOfStudents; i++)
+        int amountOfSpawnedMyStudents = 0;
+
+        for (int i = 0; i < NumberOfStudents; i++) // sapwning ALL students
         {
             int p = Random.Range(0, students.Length); // index of student variant to spawn
             int type = Random.Range(0, possibleAttributeGroups.Count);
@@ -126,6 +142,22 @@ public class levelLogic : MonoBehaviour
                     }
                 }
             }
+
+            studentBrain.isImpostor = true;
+            AllStudents.Add(studentBrain);
+            if (amountOfSpawnedMyStudents < NumberOfMyStudents)
+            {
+                studentBrain.isImpostor = false;
+                MyStudents.Add(studentBrain);
+
+                amountOfSpawnedMyStudents++;
+
+                var infoText = Instantiate(kidInfoTextPrefab, whereToSpawnEm);
+                var text = infoText.GetComponent<TextMeshProUGUI>();
+
+                text.text = GetKidInfoText(studentBrain);
+            }
+
             accumulatedStudents[i] = studentBrain; // add the brain to the accumulated ones
         }
 
@@ -204,6 +236,40 @@ public class levelLogic : MonoBehaviour
             }
         }
         return result;
+    }
+
+    private string GetKidInfoText(student_reactions studentBrain)
+    {
+        bool hasAlreadyAttribute = false;
+        string final = studentBrain.myName + " ";
+
+        bool alreadyBlind = false;
+        bool alreadyDeaf = false;
+        bool alreadyHalfDeaf = false;
+        bool alreadyIgnorant = false;
+        bool alreadyLocated = false;
+        bool alreadyLoudScared = false;
+        bool alreadyRattle = false;
+
+        if (!hasAlreadyAttribute && studentBrain.isBlind) { final +=           "has <b>no eyes</b>"; alreadyBlind = true; }
+        else if (!hasAlreadyAttribute && studentBrain.isDeaf) { final +=       "has <b>no ears</b>"; alreadyDeaf = true; }
+        else if (!hasAlreadyAttribute && studentBrain.isHalfDead) { final +=   "has <b>one ear</b>"; alreadyHalfDeaf = true; }
+        else if (!hasAlreadyAttribute && studentBrain.isIgnorant) { final +=   "really <b>likes Earth</b>"; alreadyIgnorant = true; }
+        else if (!hasAlreadyAttribute && studentBrain.isLocated) { final +=    "<b>loves " + studentBrain.likedLocation.name + "</b>"; alreadyLocated = true;  }
+        else if (!hasAlreadyAttribute && studentBrain.isLoudScared) { final += "is <b>scared of shouting</b>"; alreadyLocated = true; }
+        else if (!hasAlreadyAttribute && studentBrain.isRattle) { final +=     "came for <b>Mexican traditions</b>"; alreadyRattle = true; }
+
+        hasAlreadyAttribute = true;
+
+        if (hasAlreadyAttribute && studentBrain.isBlind && !alreadyBlind) { final += " and has <b>no eyes</b>";  }
+        else if (hasAlreadyAttribute && studentBrain.isDeaf && !alreadyDeaf) { final += " and has <b>no ears</b>";  }
+        else if (hasAlreadyAttribute && studentBrain.isHalfDead && !alreadyHalfDeaf) { final += " and has <b>one ear</b>";  }
+        else if (hasAlreadyAttribute && studentBrain.isIgnorant && !alreadyIgnorant) { final += " and really <b>likes Earth</b>"; }
+        else if (hasAlreadyAttribute && studentBrain.isLocated && !alreadyLocated) { final += " and <b> loves " + studentBrain.likedLocation.name + "</b>";  }
+        else if (hasAlreadyAttribute && studentBrain.isLoudScared && !alreadyLocated) { final += " and is <b>scared of shouting</b>"; }
+        else if (hasAlreadyAttribute && studentBrain.isRattle && !alreadyRattle) { final += " and came for <b>Mexican traditions</b>";  }
+
+        return final;
     }
 
 }

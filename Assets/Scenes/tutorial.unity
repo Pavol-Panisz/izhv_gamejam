@@ -1783,7 +1783,7 @@ RectTransform:
   m_GameObject: {fileID: 580970958}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.469065, y: 0.469065, z: 0.469065}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1532598757}
@@ -1814,8 +1814,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\nThis one is the worst,\nHe can hear you,\nhe can see you,\nbut he just
-    doesnt \nwant to leave earth\nYou have to come close to \ntake him with you\n\n"
+  m_text: '
+
+    This one is the worst.
+
+    He reeeally likes Earth and just doesn''t
+    want to leave.
+
+
+    You have to come threateningly close to him to make him
+    come with you.
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -47163,6 +47174,7 @@ MonoBehaviour:
   - {fileID: 6495602154018019807, guid: 0479f9887a17c2748a1ba7c5ce766a14, type: 3}
   - {fileID: 9016426867843085349, guid: 0a2caa0121b316743adda69738e8bc6a, type: 3}
   - {fileID: 4237973781717028095, guid: 9e24b038a182e7648b70bdcc331ab45e, type: 3}
+  NumberOfMyStudents: 0
   NumberOfStudents: 7
   standers:
   - {fileID: 1540555723042681059, guid: 59cfcd626f407a84f841f13637c912c6, type: 3}
@@ -47173,6 +47185,10 @@ MonoBehaviour:
   - {fileID: 7217927662441207814, guid: 3855124c1070c614ea9b895ab3c2c233, type: 3}
   numberOfStanders: 0
   spawnRadius: 20
+  kidInfoTextPrefab: {fileID: 413649021119568934, guid: 5f6fd437ad4096044a7263963c3d7349, type: 3}
+  whereToSpawnEm: {fileID: 0}
+  MyStudents: []
+  AllStudents: []
   fallbackRandomPointsParent: {fileID: 683239453}
   isTutorialSpawner: 1
   approximateMapCenter: {fileID: 1524328964}

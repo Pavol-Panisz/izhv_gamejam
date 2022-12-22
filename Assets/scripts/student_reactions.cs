@@ -9,7 +9,10 @@ public class student_reactions : MonoBehaviour
     public Transform aahImage;
     public float aahImaheShowTime;
 
+    [Space] [Header("Only 4 debug")]
+    public bool isImpostor = true;
 
+    [Space]
     Vector3 rattle_pos;
     public Vector3 flee_pos;
 
